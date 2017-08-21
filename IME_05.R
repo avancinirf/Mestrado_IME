@@ -14,16 +14,16 @@ library(rgeos)
 library(dismo)
 
 # Selecionando o diretório raiz
-setwd("C:/Users/Ricardo Avancini/Documents/SDM_Elith_2017/especie_virtual")
+setwd("C:/Users/Ricardo/Documents/Mestrado_IME/especie_virtual")
 getwd() 
 
 # Cria as pastas para as classes de erro (% de ocorrências que sofrerão erros)
 # 10%, 30% e 50%
 # Já foram criadas a spastas, remover antes de executar novamente.
 # Caso sejam adicionadas novas classes é necessário alterar o código
-#dir.create("erros_10")
-#dir.create("erros_30")
-#dir.create("erros_50")
+dir.create("erros_10")
+dir.create("erros_30")
+dir.create("erros_50")
 
 # seleciona o shapefile original em uma variável
 vs <- readOGR(".","especie_virtual")
@@ -46,16 +46,16 @@ for(a in 1:3){
   ### ------------------------------------------
   # Passa os pontos para uma nova variável
   vs_10_1km = vs
-  # lê as coordenadas do ponto 45
-  vs_10_1km@coords[45,1:2]
+  # lê as coordenadas do ponto 50
+  vs_10_1km@coords[50,1:2]
   
   # Converte a projeção dos pontos
   vs_10_1km <- spTransform(vs_10_1km, CRS("+proj=aea +datum=WGS84 +units=m"))
 
   # Gera os erros em 10% dos pontos (5 pontos)
   # Seleciona o índice de 5 pontos
-  x5 <- sample(1:6, 5, replace=F)
-  
+  x5 <- sample(1:50, 5, replace=F)
+
   # Loop para alterar as coordenadas de cada ponto necessário
   for(i in 1:5){
     # Gera um buffer temporário para o ponto
