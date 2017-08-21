@@ -56,13 +56,13 @@ data(wrld_simpl)
 ### ---------------------------------------------------------------------
 
 # Carregando o limite do Estado do RJ
-rj <- readOGR("C:/Users/Ricardo Avancini/Documents/SDM_Elith_2017/dados/shapefiles", "estados_rj")
+rj <- readOGR("C:/Users/Ricardo/Documents/Mestrado_IME/dados/shapefiles", "estados_rj")
 
 # Pegando as coordenadas limitrofes do Estado do RJ
 ext <- bbox(rj)
 
 # Carregando as imagens tiff com os dados do WorldClim 1.4 (30s)
-files <- list.files(path="C:/Users/Ricardo Avancini/Downloads/WorldClim_1_4_30s", pattern="*.bil$", full.names=TRUE)
+files <- list.files(path="C:/Users/Ricardo/Documents/Mestrado_IME/dados/worldclim_1_4_30s", pattern="*.bil$", full.names=TRUE)
 predictors <- stack(files)
 
 # Verifica quantas camadas (layers) existem na pilha de dados
@@ -76,11 +76,11 @@ for(i in 1:nlayers(predictors)){
   rasterTempCrop <- crop(rasterTemp,rj)
   rasterTempCrop <- mask(rasterTempCrop,rj)
   # Salva o novo tif em uma pasta com o nome da camada
-  url<-paste("SDM_Elith_2017/dados/worldclim_1_4_30s/",names(rasterTempCrop),".tif",sep='')
+  url<-paste("Mestrado_IME/dados/worldclim_1_4_30s/",names(rasterTempCrop),".tif",sep='')
   writeRaster(rasterTempCrop, filename=url, format="GTiff", overwrite=TRUE)
 }
 
-files <- list.files(path="C:/Users/Ricardo Avancini/Documents/SDM_Elith_2017/dados/worldclim_1_4_30s", pattern=".tif", full.names=TRUE)
+files <- list.files(path="C:/Users/Ricardo/Documents/Mestrado_IME/dados/worldclim_1_4_30s", pattern=".tif", full.names=TRUE)
 predictors <- stack(files)
 
 

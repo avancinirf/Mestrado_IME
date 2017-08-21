@@ -37,7 +37,7 @@ library("psych")
 ### ---------------------------------------------------------------------
 
 # diretorio aonde estão as variáveis ambientais (tif)
-setwd("C:/Users/Ricardo Avancini/Documents/SDM_Elith_2017/dados/worldclim_1_4_30s")
+setwd("C:/Users/Ricardo/Documents/Mestrado_IME/dados/worldclim_1_4_30s")
 # listar o nome dos arquivos no diretorio com o padrao .asc
 tif <- list.files(pattern = ".tif")
 tif
@@ -64,7 +64,7 @@ dim(predictors.v.na)
 
 
 # Altera a pasta do diretório default do projeto
-setwd("C:/Users/Ricardo Avancini/Documents/SDM_Elith_2017")
+setwd("C:/Users/Ricardo/Documents/Mestrado_IME")
 
 # criar pasta e definir diretorio para analise exploratoria - correlacao
 # cria uma pasta no diretorio
@@ -210,7 +210,7 @@ dev.off()
 # plot das pcs como novas variaveis
 plot(pca.as$map[[1:5]])
 
-# exportar as novas variaveis
+# exportar as novas variaveis (Eixo da PCA)
 # Esse comando gerou 5 imagens asc.
 for(i in 1:5){
   # O formato original era ".asc", alterei para ".tif"

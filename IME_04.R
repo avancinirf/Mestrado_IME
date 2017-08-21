@@ -4,7 +4,7 @@
 ### ---------------------------------------------------------------------
 
 # Selecionando o diretório raiz
-setwd("C:/Users/Ricardo Avancini/Documents/SDM_Elith_2017/especie_virtual")
+setwd("C:/Users/Ricardo/Documents/Mestrado_IME/especie_virtual")
 getwd() 
 # Exemplo do Tutorial
 library("sdmvspecies")
@@ -15,27 +15,31 @@ tif <- list.files(pattern = ".tif")
 tif
 
 # carregar os arquivos .tif
-predictors <- stack(tif)
-predictors
-names(predictors)
+vs <- stack(tif)
+vs
+names(vs)
 # plot(predictors)
-plot(predictors>0.7)
+plot(vs>0.95)
 
 
 # Reclassify raster
 # all values >= 0 and <= 0.25 become 1, etc.
-rc_predictors <- reclassify(predictors, c(0,0.74,NA, 0.75,1,1))
+rc_vs <- reclassify(vs, c(0,0.94,NA, 0.95,1,1))
 
 # Carregando o pacote dismo para usar a função randomPoints
 library(dismo)
-specie <- randomPoints(rc_predictors, 45)
+require(rgdal)
+library(rgeos)
+specie <- randomPoints(rc_vs, 50)
 
-plot(rc_predictors)
+plot(rc_vs)
 points(specie, pch='+', col='red')
 
 # Salva o arquivo tif com os dados reclassificados para ) ou 1 (>=0.75 = 1)
-writeRaster(rc_predictors, paste0("rc_vs.tif"), format = "GTiff")
+writeRaster(rc_vs, paste0("rc_vs.tif"), format = "GTiff")
 
+# Antes de ler a tabela dos dados é necessário alterar os nomes da coluna, pois 
+# elas ficam deslocadas. A primeira aparece sem nome
 # Salva os pontos gerados como uma tabela
 write.table(specie, "vs_pontos.csv", row.names = T, sep = ";")
 
