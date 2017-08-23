@@ -75,3 +75,39 @@ writeRaster(species.raster, paste0("vs.tif"), format = "GTiff")
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
